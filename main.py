@@ -3,15 +3,13 @@ import os
 import sys
 import os
 import keyboard
-import mouse
-import asyncio
 import threading
 from time import strftime, localtime, sleep
 from PyQt6.QtGui import QGuiApplication, QCursor
 from PyQt6.QtQml import QQmlApplicationEngine
 from PyQt6.QtQuick import QQuickWindow
 from PyQt6.QtQuick import QQuickWindow
-from PyQt6.QtCore import QObject, pyqtSignal, QThread, QCoreApplication, QObject, QRunnable, QThreadPool
+from PyQt6.QtCore import QObject, pyqtSignal, QThread, QObject
 from PyQt6 import QtWidgets
 
 class Backend(QObject):    
@@ -65,10 +63,9 @@ curr_time = strftime("%H:%M:%S", localtime())
 engine = QQmlApplicationEngine()
 engine.quit.connect(app.quit)
 engine.load('./UI/main.qml')
+
 back_end = Backend()
 engine.rootObjects()[0].setProperty('backend', back_end)
 back_end.bootUp()
 
 using_mouse_loop()
-
-sys.exit(app.exec())

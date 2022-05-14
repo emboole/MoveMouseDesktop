@@ -12,7 +12,7 @@ ApplicationWindow {
     // flags: Qt.FramelessWindowHint | Qt.Window
 
 
-    title: "HelloApp"
+    title: "Careless Mouse"
 
     property string currTime: "00:00:00"
     property QtObject backend
