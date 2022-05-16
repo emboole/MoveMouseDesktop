@@ -33,12 +33,20 @@ class Backend(QObject):
 
 class MouseLoop(QThread):
     def run(self):
-        count = 0
+        # pos = QCursor.pos()
         while True:
-            sleep(1)
-            QCursor.setPos(100, 100)
-            sleep(1)
-            QCursor.setPos(150, 150)
+            pos = QCursor.pos()
+
+            for i in range(0, 20):
+                QCursor.setPos(pos.x() + i + 1, pos.y() + i + 1)
+                sleep(0.02)
+                
+            sleep(5)
+            pos = QCursor.pos()
+
+            for i in range(0, 20):
+                QCursor.setPos(pos.x() - i - 1, pos.y() - i - 1)
+                sleep(0.02)
 
 def using_mouse_loop():
     app = QtWidgets.QApplication(sys.argv)
