@@ -1,35 +1,10 @@
 import sys
 import os
-import sys
-import os
 import keyboard
-import threading
-from time import strftime, localtime, sleep
-from PyQt6.QtGui import QGuiApplication, QCursor
-from PyQt6.QtQml import QQmlApplicationEngine
-from PyQt6.QtQuick import QQuickWindow
-from PyQt6.QtQuick import QQuickWindow
-from PyQt6.QtCore import QObject, pyqtSignal, QThread, QObject
-from PyQt6 import QtWidgets
-
-class Backend(QObject):    
-    def __init__(self):
-        QObject.__init__(self)
-
-    updated = pyqtSignal(str, arguments=['updater'])
-    def updater(self, curr_time):
-        self.updated.emit(curr_time)
-
-    def bootUp(self):
-        t_thread = threading.Thread(target=self._bootUp)
-        t_thread.daemon = True
-        t_thread.start()    
-
-    def _bootUp(self):
-        while True:
-            curr_time = strftime("%H:%M:%S", localtime())
-            self.updater(curr_time)
-            sleep(0.1)
+from time import sleep
+from PyQt6.QtCore import QThread
+from PyQt6.QtGui import *
+from PyQt6.QtWidgets import *
 
 class MouseLoop(QThread):
     def run(self):
@@ -46,8 +21,31 @@ class MouseLoop(QThread):
                 
             sleep(5)
 
-def using_mouse_loop():
-    app = QtWidgets.QApplication(sys.argv)
+def create_menu():
+    app = QApplication(sys.argv)
+
+    icon = QIcon("images/raton8.png")
+    tray = QSystemTrayIcon()
+    tray.setIcon(icon)
+    tray.setVisible(True)
+
+    # Context menu
+    menu = QMenu()
+
+    # Actions
+    action = QAction("Test")
+    menu.addAction(action)
+
+    quit = QAction("Quit")
+    quit.triggered.connect(app.quit)
+    menu.addAction(quit)
+
+    # Add the menu to the tray bar
+    tray.setContextMenu(menu)
+
+    using_mouse_loop(app)
+
+def using_mouse_loop(app):
     thread = MouseLoop()
     thread.finished.connect(app.exit)
     thread.start()
@@ -60,18 +58,4 @@ def keyHook(info):
             os._exit(0)
 
 keyboard.hook(keyHook)
-
-QQuickWindow.setSceneGraphBackend('software')
-
-app = QGuiApplication(sys.argv)
-curr_time = strftime("%H:%M:%S", localtime())
-
-engine = QQmlApplicationEngine()
-engine.quit.connect(app.quit)
-engine.load('./UI/main.qml')
-
-back_end = Backend()
-engine.rootObjects()[0].setProperty('backend', back_end)
-back_end.bootUp()
-
-using_mouse_loop()
+create_menu()
