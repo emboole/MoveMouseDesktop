@@ -24,7 +24,7 @@ class MouseLoop(QThread):
 def create_menu():
     app = QApplication(sys.argv)
 
-    icon = QIcon("images/raton8.png")
+    icon = QIcon("images/mouse.png")
     tray = QSystemTrayIcon()
     tray.setIcon(icon)
     tray.setVisible(True)
