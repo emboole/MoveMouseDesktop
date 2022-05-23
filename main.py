@@ -1,25 +1,8 @@
 import sys
 import os
 import keyboard
-from time import sleep
-from PyQt6.QtCore import QThread
-from PyQt6.QtGui import *
 from PyQt6.QtWidgets import *
-
-class MouseLoop(QThread):
-    def run(self):
-        while True:
-            pos = QCursor.pos()
-            for i in range(0, 20):
-                QCursor.setPos(pos.x() + i + 1, pos.y() + i + 1)
-                sleep(0.02)  
-
-            pos = QCursor.pos()
-            for i in range(0, 20):
-                QCursor.setPos(pos.x() - i - 1, pos.y() - i - 1)
-                sleep(0.02)
-                
-            sleep(5)
+from MouseLoop import *
 
 def button_clicked():
     dlg = QMessageBox()
@@ -70,3 +53,7 @@ def keyHook(info):
 
 keyboard.hook(keyHook)
 create_menu()
+# app = QApplication(sys.argv)
+# m = Menu()
+# m.create_menu(app)
+# using_mouse_loop(app)
