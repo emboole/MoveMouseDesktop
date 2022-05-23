@@ -15,29 +15,30 @@ def button_clicked():
     dlg.setStandardButtons(QMessageBox.StandardButton.Ok)
     dlg.exec()
 
-def create_menu():
-    app = QApplication(sys.argv)
-    app.setQuitOnLastWindowClosed(False)
-    icon = QIcon("images/mouse.png")
-    tray = QSystemTrayIcon()
-    tray.setIcon(icon)
-    tray.setVisible(True)
+class Menu:
+    def create_menu(self):
+        app = QApplication(sys.argv)
+        app.setQuitOnLastWindowClosed(False)
+        icon = QIcon("images/mouse.png")
+        tray = QSystemTrayIcon()
+        tray.setIcon(icon)
+        tray.setVisible(True)
 
-    # Context menu
-    menu = QMenu()
+        # Context menu
+        menu = QMenu()
 
-    # Actions
-    action = QAction("About")
-    action.triggered.connect(button_clicked)
-    menu.addAction(action)
+        # Actions
+        action = QAction("About")
+        action.triggered.connect(button_clicked)
+        menu.addAction(action)
 
-    quit = QAction("Quit")
-    quit.triggered.connect(app.quit)
-    menu.addAction(quit)
+        quit = QAction("Quit")
+        quit.triggered.connect(app.quit)
+        menu.addAction(quit)
 
-    # Add the menu to the tray bar
-    tray.setContextMenu(menu)
-    using_mouse_loop(app)
+        # Add the menu to the tray bar
+        tray.setContextMenu(menu)
+        using_mouse_loop(app)
 
 def using_mouse_loop(app):
     thread = MouseLoop()
@@ -52,8 +53,9 @@ def keyHook(info):
             os._exit(0)
 
 keyboard.hook(keyHook)
-create_menu()
+# create_menu()
 # app = QApplication(sys.argv)
-# m = Menu()
+m = Menu()
 # m.create_menu(app)
+m.create_menu()
 # using_mouse_loop(app)
