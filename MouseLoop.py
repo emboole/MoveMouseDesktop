@@ -15,4 +15,4 @@ class MouseLoop(QThread):
                 QCursor.setPos(pos.x() - i - 1, pos.y() - i - 1)
                 sleep(0.02)
                 
-            sleep(5)
+            sleep(20)
