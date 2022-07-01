@@ -25,8 +25,7 @@ run:
   script:
     - pip3 install keyboard
     - pip3 install pyqt6
-    - apt-get update
-    - apt-get install ffmpeg libsm6 libxext6  -y
+    - apt-get update && apt-get install libgl1
     - python main.py
     # - npm install
     # - npm install -g gatsby-cli
