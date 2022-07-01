@@ -22,7 +22,7 @@ run:
   # only: #solo correrlo en la rama:
   #   - master 
   script:
-    - apt install -y python3
+    - apt update && apt install -y python3
     - pip3 install keyboard
     - python3 -m pip install pip setuptools --upgrade
     - pip3 install pyqt6
