@@ -1,7 +1,5 @@
 stages:
   - run
-  # - test
-  # - deploy
 
 # cache:
 #   key: ${CI_COMMIT_REF_SLUG}
@@ -11,29 +9,21 @@ stages:
 # variables: 
 #   STAGING_DOMAIN: instazone-staging.surge.sh
 #   PRODUCTION_DOMAIN: instazone.surge.sh
-#   #se usan onda: http://$STAGING_DOMAIN
-#   # http://$STAGING_DOMAIN
-#   # http://$STAGING_DOMAIN.sarasa
-#   # Se pueden usar para, por ejemplo, environments dinámicos
+  #se usan onda: http://$STAGING_DOMAIN
+  # http://$STAGING_DOMAIN
+  # http://$STAGING_DOMAIN.sarasa
+  # Se pueden usar para, por ejemplo, environments dinámicos
 
-# # .build website: #con el punto se anula el stage
+# # .run con el punto se anula el stage, evita comentar en masa o editar de mas
 run:
   stage: run
-  image: python
+  image: ubuntu
+  # image: python
   # only: #solo correrlo en la rama:
   #   - master 
   script:
-    - apt-get update && apt-get install -y python3-opencv && apt-get install libegl
-    - pip install opencv-python
+    - apt install -y python3
     - pip3 install keyboard
     - python3 -m pip install pip setuptools --upgrade
     - pip3 install pyqt6
-    # - apt-get update && apt-get install -y libgl1
-    # - apt-get install -y libxkbcommon-x11-0
     - python main.py
-    # - npm install
-    # - npm install -g gatsby-cli
-    # - gatsby build
-  # artifacts:
-  #   paths:
-  #     - ./public
