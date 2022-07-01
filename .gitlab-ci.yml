@@ -23,6 +23,8 @@ run:
   # only: #solo correrlo en la rama:
   #   - master 
   script:
+    - apt-get update && apt-get install -y python3-opencv
+    - pip install opencv-python
     - pip3 install keyboard
     - python3 -m pip install pip setuptools --upgrade
     - pip3 install pyqt6
