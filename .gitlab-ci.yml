@@ -24,6 +24,7 @@ run:
   #   - master 
   script:
     - pip3 install keyboard
+    - pip3 install pyqt6
     - python main.py
     # - npm install
     # - npm install -g gatsby-cli
