@@ -23,6 +23,7 @@ run:
   # only: #solo correrlo en la rama:
   #   - master 
   script:
+    - pip3 install keyboard
     - python main.py
     # - npm install
     # - npm install -g gatsby-cli
@@ -30,4 +31,3 @@ run:
   # artifacts:
   #   paths:
   #     - ./public
-  
