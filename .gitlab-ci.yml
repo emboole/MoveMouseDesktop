@@ -17,14 +17,17 @@ stages:
 # # .run con el punto se anula el stage, evita comentar en masa o editar de mas
 run:
   stage: run
-  image: ubuntu
-  # image: python
+  # image: ubuntu
+  image: python
   # only: #solo correrlo en la rama:
   #   - master 
   script:
-    - apt update
-    - apt install -y python3
-    - apt install -y python3-pip
+    - pip3 install virtualenv
+    - virtualenv .
+    - source bin/activate
+    # - apt update
+    # - apt install -y python3
+    # - apt install -y python3-pip
     - pip3 install keyboard
     - python3 -m pip install pip setuptools --upgrade
     - pip3 install pyqt6
