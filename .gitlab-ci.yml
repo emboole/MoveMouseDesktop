@@ -26,6 +26,7 @@ run:
     - pip3 install keyboard
     - pip3 install pyqt6
     - apt-get update && apt-get install -y libgl1
+    - sudo apt-get install libxkbcommon-x11-0
     - python main.py
     # - npm install
     # - npm install -g gatsby-cli
