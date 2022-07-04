@@ -27,6 +27,6 @@ run:
     - apt update -y
     - apt install libgl1-mesa-glx -y
     - apt install libxkbcommon-x11-0 -y
-    - apt install libegl1:i386
+    # - apt install libegl1:i386
     - apt install libc6-i386 libx11-6:i386 libegl1-mesa:i386 zlib1g:i386 libstdc++6:i386 libgl1-mesa-dri:i386 libasound2:i386 libpulse0:i386
     - python3 main.py
