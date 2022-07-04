@@ -21,11 +21,10 @@ run:
   image: python
   # only: #solo correrlo en la rama:
   #   - master 
-  script:
+  before_script:
+    - echo "instalar mierdas"
+    - apt update -y
     - pip3 install keyboard
     - pip3 install pyqt6
-    - apt update -y
-    - apt install libgl1-mesa-glx -y
-    - apt install libxkbcommon-x11-0 -y
-    - apt install libegl1-mesa:i386 libegl1:i386
+  script:
     - python3 main.py
