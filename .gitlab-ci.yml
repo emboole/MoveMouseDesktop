@@ -24,6 +24,6 @@ run:
   script:
     - pip3 install keyboard
     - pip3 install pyqt6
-    - apt update
-    - apt install libgl1-mesa-glx
+    - apt update -y
+    - apt install libgl1-mesa-glx -y
     - python3 main.py
