@@ -30,5 +30,6 @@ run:
     # - apt install -y python3-pip
     - pip3 install keyboard
     - python3 -m pip install pip setuptools --upgrade
+    - apt install libgl1-mesa-glx
     - pip3 install pyqt6
     - python3 main.py
