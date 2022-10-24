@@ -1,6 +1,7 @@
 from time import sleep
 from PyQt6.QtCore import QThread
 from PyQt6.QtGui import *
+import pydirectinput
 
 class MouseLoop(QThread):
     def run(self):
@@ -15,4 +16,5 @@ class MouseLoop(QThread):
                 QCursor.setPos(pos.x() - i - 1, pos.y() - i - 1)
                 sleep(0.02)
                 
+            pydirectinput.leftClick()            
             sleep(20)
